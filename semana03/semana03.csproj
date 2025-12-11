@@ -1,10 +1,55 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+using System;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+namespace RegistroEstudiante
+{
+    // Clase Estudiante
+    class Estudiante
+    {
+        public int ID { get; set; }
+        public string Nombres { get; set; }
+        public string Apellidos { get; set; }
+        public string Direccion { get; set; }
+        public string[] Telefonos { get; set; }
 
-</Project>
+        public Estudiante(int id, string nombres, string apellidos, string direccion, string[] telefonos)
+        {
+            ID = id;
+            Nombres = nombres;
+            Apellidos = apellidos;
+            Direccion = direccion;
+            Telefonos = telefonos;
+        }
+
+        public void MostrarInfo()
+        {
+            Console.WriteLine("\n--- Información del Estudiante ---");
+            Console.WriteLine($"ID: {ID}");
+            Console.WriteLine($"Nombres: {Nombres}");
+            Console.WriteLine($"Apellidos: {Apellidos}");
+            Console.WriteLine($"Dirección: {Direccion}");
+            for (int i = 0; i < Telefonos.Length; i++)
+            {
+                Console.WriteLine($"Teléfono {i + 1}: {Telefonos[i]}");
+            }
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Estudiante estudiante1 = new Estudiante(
+                1,
+                "María Elizabeth",
+                "González",
+                "Av. Amazonas N° 123",
+                new string[] { "0991234567", "0987654321", "0971122334" }
+            );
+
+            estudiante1.MostrarInfo();
+
+            Console.WriteLine("\nPresiona cualquier tecla para salir...");
+            Console.ReadKey();
+        }
+    }
+}
