@@ -2,15 +2,16 @@
 
 namespace RegistroEstudiante
 {
-    // Clase Estudiante
+    // Definición de la clase Estudiante
     class Estudiante
     {
         public int ID { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
-        public string[] Telefonos { get; set; }
+        public string[] Telefonos { get; set; }  // Array para 3 números de teléfono
 
+        // Constructor de la clase
         public Estudiante(int id, string nombres, string apellidos, string direccion, string[] telefonos)
         {
             ID = id;
@@ -20,6 +21,7 @@ namespace RegistroEstudiante
             Telefonos = telefonos;
         }
 
+        // Método para mostrar la información del estudiante
         public void MostrarInfo()
         {
             Console.WriteLine("\n--- Información del Estudiante ---");
@@ -38,6 +40,7 @@ namespace RegistroEstudiante
     {
         static void Main(string[] args)
         {
+            // Crear un objeto de la clase Estudiante con tus datos
             Estudiante estudiante1 = new Estudiante(
                 1,
                 "María Elizabeth",
@@ -46,6 +49,7 @@ namespace RegistroEstudiante
                 new string[] { "0991234567", "0987654321", "0971122334" }
             );
 
+            // Mostrar información del estudiante
             estudiante1.MostrarInfo();
 
             Console.WriteLine("\nPresiona cualquier tecla para salir...");
