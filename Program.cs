@@ -1,60 +1,144 @@
 ﻿using System;
 
-namespace RegistroEstudiante
+// REGISTRO (struct)
+struct Contacto
 {
-    // Definición de la clase Estudiante
-    class Estudiante
+    public string Nombre;
+    public string Telefono;
+    public string Email;
+}
+
+// CLASE PRINCIPAL (POO)
+class Agenda
+{
+    private Contacto[] contactos; // VECTOR
+    private int contador;
+
+    // CONSTRUCTOR
+    public Agenda(int tamaño)
     {
-        public int ID { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Direccion { get; set; }
-        public string[] Telefonos { get; set; }  // Array para 3 números de teléfono
+        contactos = new Contacto[tamaño];
+        contador = 0;
 
-        // Constructor de la clase
-        public Estudiante(int id, string nombres, string apellidos, string direccion, string[] telefonos)
-        {
-            ID = id;
-            Nombres = nombres;
-            Apellidos = apellidos;
-            Direccion = direccion;
-            Telefonos = telefonos;
-        }
+        // DATOS PRECARGADOS
+        contactos[contador].Nombre = "Maria Gonzalez";
+        contactos[contador].Telefono = "090000009";
+        contactos[contador].Email = "ma.gonzalez@uea.com";
+        contador++;
+    }
 
-        // Método para mostrar la información del estudiante
-        public void MostrarInfo()
+    // REPORTERÍA: MOSTRAR CONTACTOS
+    public void MostrarContactos()
+    {
+        Console.WriteLine("\nLISTA DE CONTACTOS");
+        for (int i = 0; i < contador; i++)
         {
-            Console.WriteLine("\n--- Información del Estudiante ---");
-            Console.WriteLine($"ID: {ID}");
-            Console.WriteLine($"Nombres: {Nombres}");
-            Console.WriteLine($"Apellidos: {Apellidos}");
-            Console.WriteLine($"Dirección: {Direccion}");
-            for (int i = 0; i < Telefonos.Length; i++)
-            {
-                Console.WriteLine($"Teléfono {i + 1}: {Telefonos[i]}");
-            }
+            Console.WriteLine("----------------------");
+            Console.WriteLine("Nombre: " + contactos[i].Nombre);
+            Console.WriteLine("Teléfono: " + contactos[i].Telefono);
+            Console.WriteLine("Email: " + contactos[i].Email);
         }
     }
 
-    class Program
+    // MATRIZ PARA REPORTE
+    public void ReporteMatriz()
     {
-        static void Main(string[] args)
+        string[,] reporte = new string[contador, 3];
+
+        for (int i = 0; i < contador; i++)
         {
-            // Crear un objeto de la clase Estudiante con tus datos
-            Estudiante estudiante1 = new Estudiante(
-                1,
-                "María Elizabeth",
-                "González",
-                "Av. Amazonas N° 123",
-                new string[] { "0991234567", "0987654321", "0971122334" }
-            );
+            reporte[i, 0] = contactos[i].Nombre;
+            reporte[i, 1] = contactos[i].Telefono;
+            reporte[i, 2] = contactos[i].Email;
+        }
 
-            // Mostrar información del estudiante
-            estudiante1.MostrarInfo();
-
-            Console.WriteLine("\nPresiona cualquier tecla para salir...");
-            Console.ReadKey();
+        Console.WriteLine("\nREPORTE EN MATRIZ");
+        for (int i = 0; i < contador; i++)
+        {
+            Console.WriteLine($"{reporte[i, 0]} | {reporte[i, 1]} | {reporte[i, 2]}");
         }
     }
 }
 
+// PROGRAMA PRINCIPAL
+class Program
+{
+    static void Main()
+    {
+        Agenda agenda = new Agenda(5);
+
+        Console.WriteLine("AGENDA TELEFÓNICA");
+        agenda.MostrarContactos();
+        agenda.ReporteMatriz();
+
+        Console.ReadKey();
+    }
+}
+
+
+// CLASE PRINCIPAL (POO)
+class Agenda
+{
+    private Contacto[] contactos; // VECTOR
+    private int contador;
+
+    // CONSTRUCTOR
+    public Agenda(int tamaño)
+    {
+        contactos = new Contacto[tamaño];
+        contador = 0;
+
+        // DATOS PRECARGADOS
+        contactos[contador].Nombre = "Maria Gonzalez";
+        contactos[contador].Telefono = "090000009";
+        contactos[contador].Email = "ma.gonzalez@uea.com";
+        contador++;
+    }
+
+    // REPORTERÍA: MOSTRAR CONTACTOS
+    public void MostrarContactos()
+    {
+        Console.WriteLine("\nLISTA DE CONTACTOS");
+        for (int i = 0; i < contador; i++)
+        {
+            Console.WriteLine("----------------------");
+            Console.WriteLine("Nombre: " + contactos[i].Nombre);
+            Console.WriteLine("Teléfono: " + contactos[i].Telefono);
+            Console.WriteLine("Email: " + contactos[i].Email);
+        }
+    }
+
+    // MATRIZ PARA REPORTE
+    public void ReporteMatriz()
+    {
+        string[,] reporte = new string[contador, 3];
+
+        for (int i = 0; i < contador; i++)
+        {
+            reporte[i, 0] = contactos[i].Nombre;
+            reporte[i, 1] = contactos[i].Telefono;
+            reporte[i, 2] = contactos[i].Email;
+        }
+
+        Console.WriteLine("\nREPORTE EN MATRIZ");
+        for (int i = 0; i < contador; i++)
+        {
+            Console.WriteLine($"{reporte[i, 0]} | {reporte[i, 1]} | {reporte[i, 2]}");
+        }
+    }
+}
+
+// PROGRAMA PRINCIPAL
+class Program
+{
+    static void Main()
+    {
+        Agenda agenda = new Agenda(5);
+
+        Console.WriteLine("AGENDA TELEFÓNICA");
+        agenda.MostrarContactos();
+        agenda.ReporteMatriz();
+
+        Console.ReadKey();
+    }
+}
